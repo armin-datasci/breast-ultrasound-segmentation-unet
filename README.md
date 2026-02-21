@@ -126,7 +126,6 @@ All comparative results are stored in the `comparison/` directory, including plo
 | Baseline  | 128×128    | 0.15    | 8          | 50     | BCE           | 0.62            | 0.75                |
 | Improved  | 192×192    | 0.10    | 8          | 50     | BCE + Dice    | 0.92            | 0.86                |
 
-(Values are illustrative; see plots for exact results.)
 
 ---
 
