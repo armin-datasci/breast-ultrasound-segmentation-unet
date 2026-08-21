@@ -40,21 +40,68 @@ All experiments use the same dataset split for fair comparison between models.
 
 ## 3. Repository Structure
 
-bachelor-project
-  - 01-baseline-busi-unet/
-    - notebook/
-    - src/
-    - figures/
-  - 02-improved-busi-unet/
-    - notebook/
-    - src/
-    - figures/
-  - comparison/
-    - plots/
-    - tables/
-  - README.md
-  - LICENSE
-  - .gitignore
+breast-ultrasound-segmentation-unet/
+│
+├── 01-baseline-busi-unet/
+│   │
+│   ├── notebook/
+│   │   └── baseline_busi_unet.ipynb
+│   │
+│   ├── src/
+│   │   ├── callbacks.py
+│   │   ├── dataset_loader.py
+│   │   ├── evaluation.py
+│   │   ├── losses.py
+│   │   ├── model.py
+│   │   ├── train_pipeline.py
+│   │   └── utils.py
+│   │
+│   └── figures/
+│       ├── best_model.keras
+│       ├── training_loss.png
+│       └── validation_metrics.png
+│
+├── 02-improved-busi-unet/
+│   │
+│   ├── notebook/
+│   │   └── improved_busi_unet.ipynb
+│   │
+│   ├── src/
+│   │   ├── augmentation.py
+│   │   ├── callbacks.py
+│   │   ├── dataset_loader.py
+│   │   ├── evaluation.py
+│   │   ├── losses.py
+│   │   ├── model.py
+│   │   ├── preprocessing.py
+│   │   ├── train_pipeline.py
+│   │   └── utils.py
+│   │
+│   └── figures/
+│       ├── best_model.keras
+│       ├── training_loss.png
+│       └── validation_metrics.png
+│
+├── comparison/
+│   │
+│   ├── baseline/
+│   │   ├── training_loss.png
+│   │   └── validation_metrics.png
+│   │
+│   ├── improved/
+│   │   ├── training_loss.png
+│   │   └── validation_metrics.png
+│   │
+│   ├── plots/
+│   │   ├── dice_iou_comparison.png
+│   │   └── loss_comparison.png
+│   │
+│   └── tables/
+│       └── metrics_comparison.md
+│
+├── .gitignore
+├── LICENSE
+└── README.md
 
 ---
 
