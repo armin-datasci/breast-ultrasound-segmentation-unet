@@ -1,0 +1,47 @@
+{
+  "comparison_version": "1.0",
+  "notebook_contract_version": "1.0",
+  "notebook_contract_commit": "919e74d",
+  "dataset": {
+    "name": "BUSI",
+    "total_cases": 780,
+    "experiment_cases": 647,
+    "dataset_case_order_sha256": "bfc46d4ecf1483ba7699fb726f588dee2307e0e46ef77aa690f22857b3a4af1e",
+    "validation_membership_sha256": "e5c318a528dee5a335218114b5b1601b5dbae8276686d739126ea5d5c3a8344c",
+    "validation_cases": 130,
+    "validation_case_ids_match": true
+  },
+  "baseline": {
+    "source_commit": "5d1093197773793f7229a71682297459f1113cbb",
+    "mean_foreground_dice": 0.6869214177131653,
+    "mean_foreground_iou": 0.5895281434059143,
+    "best_soft_validation_dice": 0.6592658162117004,
+    "best_epoch": 50,
+    "epochs_completed": 50
+  },
+  "improved": {
+    "source_commit": "0cd7317567e75e6b95462432acab4cf622db7a8b",
+    "mean_foreground_dice": 0.7004164457321167,
+    "mean_foreground_iou": 0.6040287613868713,
+    "best_soft_validation_dice": 0.6893072724342346,
+    "best_epoch": 24,
+    "epochs_completed": 34
+  },
+  "delta": {
+    "dice_absolute": 0.013495028018951416,
+    "dice_percentage_points": 1.3495028018951416,
+    "dice_relative_pct": 1.9645664949387958,
+    "iou_absolute": 0.014500617980957031,
+    "iou_percentage_points": 1.4500617980957031,
+    "iou_relative_pct": 2.459699022540602
+  },
+  "acceptance_checks": {
+    "dataset_order_fingerprint_match": true,
+    "validation_fingerprint_match": true,
+    "validation_case_ids_match": true,
+    "same_train_count_before_augmentation": true,
+    "same_validation_count": true,
+    "same_threshold": true,
+    "same_offline_metric_scope": true
+  }
+}

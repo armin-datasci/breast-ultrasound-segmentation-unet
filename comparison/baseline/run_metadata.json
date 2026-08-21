@@ -1,0 +1,75 @@
+{
+  "notebook_contract_version": "1.0",
+  "experiment": "baseline-busi-unet-standardized",
+  "task": "Binary breast-lesion segmentation on benign and malignant BUSI ultrasound cases; normal cases excluded.",
+  "model": {
+    "name": "Baseline U-Net",
+    "input_shape": [
+      128,
+      128,
+      1
+    ],
+    "dropout_rate": 0.15,
+    "loss": "Binary Crossentropy"
+  },
+  "source": {
+    "repository": "https://github.com/armin-datasci/breast-ultrasound-segmentation-unet.git",
+    "branch": "fix/leakage-free-improved-unet",
+    "commit": "5d1093197773793f7229a71682297459f1113cbb"
+  },
+  "dataset": {
+    "name": "Breast Ultrasound Images Dataset (BUSI)",
+    "access_method": "Public Google Drive ZIP download",
+    "google_drive_file_id": "1Pl22yxAccHBUfcBCAgMIK1XesDES-Ytl",
+    "google_drive_share_url": "https://drive.google.com/file/d/1Pl22yxAccHBUfcBCAgMIK1XesDES-Ytl/view?usp=sharing",
+    "total_busi_images": 780,
+    "experiment_images": 647,
+    "benign_images": 437,
+    "malignant_images": 210,
+    "normal_images": 133,
+    "dataset_case_order_sha256": "bfc46d4ecf1483ba7699fb726f588dee2307e0e46ef77aa690f22857b3a4af1e"
+  },
+  "split": {
+    "seed": 42,
+    "validation_fraction": 0.2,
+    "training_samples_before_augmentation": 517,
+    "validation_samples": 130,
+    "validation_membership_sha256": "e5c318a528dee5a335218114b5b1601b5dbae8276686d739126ea5d5c3a8344c"
+  },
+  "augmentation": {
+    "scope": "none",
+    "generated_samples": 0,
+    "training_samples_after_augmentation": 517,
+    "transforms": {}
+  },
+  "training": {
+    "batch_size": 8,
+    "maximum_epochs": 50,
+    "epochs_completed": 50,
+    "learning_rate": 0.0001,
+    "best_epoch": 50,
+    "best_monitored_soft_validation_dice": 0.6592658162117004
+  },
+  "offline_evaluation": {
+    "checkpoint": "exact best ModelCheckpoint",
+    "threshold": 0.5,
+    "metric_scope": "mean per-sample foreground",
+    "mean_dice": 0.6869214177131653,
+    "mean_iou": 0.5895281434059143
+  },
+  "methodology": {
+    "ground_truth_roi_crop": false,
+    "validation_augmentation": false,
+    "deterministic_file_order": true,
+    "best_checkpoint_reloaded": true,
+    "shared_validation_split_fingerprinted": true
+  },
+  "artifacts": {
+    "best_model": "/content/busi-unet-final/baseline-busi-unet-standardized/best_model.keras",
+    "training_history": "/content/busi-unet-final/baseline-busi-unet-standardized/training_history.json",
+    "validation_split": "/content/busi-unet-final/baseline-busi-unet-standardized/validation_split.json",
+    "training_loss_figure": "/content/busi-unet-final/baseline-busi-unet-standardized/figures/training_loss.png",
+    "validation_metrics_figure": "/content/busi-unet-final/baseline-busi-unet-standardized/figures/validation_metrics.png"
+  },
+  "created_at_utc": "2026-08-21T21:46:28.789291+00:00"
+}
