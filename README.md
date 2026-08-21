@@ -356,18 +356,21 @@ Earlier results produced using the leakage-prone preprocessing path are therefor
 
 # 7. Reproducibility
 
-## Runtime Dependencies
+## Validated Final-Run Environment
 
-The repository includes a root-level `requirements.txt` containing the direct Python dependencies used by the final experiment environment:
+The accepted Baseline and Improved experiments were executed in Google Colab with the following validated runtime environment:
 
-```text
-tensorflow==2.20.0
-numpy==2.1.3
-opencv-python-headless==4.14.0.94
-scikit-learn==1.6.1
-matplotlib==3.10.0
-gdown==5.2.2
-```
+| Component | Version |
+|---|---:|
+| Python | 3.13.15 |
+| TensorFlow | 2.20.0 |
+| NumPy | 2.1.3 |
+| OpenCV | 4.14.0 |
+| scikit-learn | 1.6.1 |
+| Matplotlib | 3.10.0 |
+| gdown | 5.2.2 |
+
+The root-level `requirements.txt` contains the installable Python package dependencies used by the project. Python itself is documented separately because it is the runtime interpreter rather than a package installed through `pip`.
 
 The final accepted experiments were executed in **Google Colab**.
 
