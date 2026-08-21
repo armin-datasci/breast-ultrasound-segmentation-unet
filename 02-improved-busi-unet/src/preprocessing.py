@@ -20,10 +20,12 @@ def preprocess_dataset(dataset_path, img_height, img_width, img_channel=1):
         if not os.path.exists(cls_path):
             continue
 
-        img_files = [
-            f for f in os.listdir(cls_path)
-            if f.endswith(".png") and "_mask" not in f
-        ]
+        img_files = sorted(
+            [
+                f for f in os.listdir(cls_path)
+                if f.endswith(".png") and "_mask" not in f
+                ]
+            )
 
         for img_file in img_files:
             img_path = os.path.join(cls_path, img_file)
