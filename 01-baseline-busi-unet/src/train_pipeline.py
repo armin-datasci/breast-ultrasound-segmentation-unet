@@ -80,7 +80,4 @@ def train_pipeline(
         verbose=1
     )
 
-    if save_path:
-        model.save(save_path)
-
     return model, history

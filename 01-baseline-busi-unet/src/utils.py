@@ -34,7 +34,7 @@ def plot_training_loss(history, smooth=True):
     fig, ax = plt.subplots(figsize=(6, 4))
     ax.plot(train_loss, label="Train BCE")
     ax.plot(val_loss, label="Val BCE")
-    ax.set_title("MODEL LOSS")
+    ax.set_title("Training Loss")
     ax.set_xlabel("Epochs")
     ax.set_ylabel("BCE Loss")
     ax.legend()
@@ -49,12 +49,15 @@ def plot_validation_metrics(final_dice, final_miou):
     Returns the matplotlib figure object.
     """
     metrics = [final_dice, final_miou]
-    names = ["Validation Dice", "Validation Mean IoU"]
+    names = [
+    "Mean Foreground Dice",
+    "Mean Foreground IoU",
+    ]
 
     fig, ax = plt.subplots(figsize=(5, 4))
-    ax.bar(names, metrics, color=["skyblue", "salmon"])
+    ax.bar(names, metrics)
     ax.set_ylim(0, 1)
-    ax.set_title("MODEL EVALUATORS")
+    ax.set_title("Model Evaluation Metrics")
     ax.set_ylabel("Score")
 
     for i, v in enumerate(metrics):

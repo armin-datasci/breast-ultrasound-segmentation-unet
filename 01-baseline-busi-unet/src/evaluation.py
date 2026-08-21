@@ -1,27 +1,101 @@
 import numpy as np
-from tensorflow.keras.metrics import MeanIoU
 
-def mean_iou(y_true, y_pred, num_classes=2, threshold=0.5):
+
+def mean_dice(
+    y_true,
+    y_pred,
+    threshold=0.5,
+    eps=1e-6,
+):
     """
-    Compute Mean IoU for the offline evaluation.
+    Compute mean per-sample foreground Dice coefficient.
 
-    Args:
-        y_true: ground truth masks, shape (N, H, W, 1)
-        y_pred: predicted masks, shape (N, H, W, 1)
-        num_classes: number of classes (binary: 2)
-        threshold: threshold to binarize predictions
-
-    Returns:
-        mean IoU value
+    Ground-truth masks are binarized at 0.5 and predictions are
+    thresholded before evaluation.
     """
-    # Binarize predictions
-    y_pred_bin = (y_pred >= threshold).astype(np.uint8)
-    y_true_bin = y_true.astype(np.uint8)
 
-    # Flatten to compute MeanIoU
-    y_true_flat = y_true_bin.flatten()
-    y_pred_flat = y_pred_bin.flatten()
+    y_true = (
+        y_true > 0.5
+    ).astype(np.float32)
 
-    m = MeanIoU(num_classes=num_classes)
-    m.update_state(y_true_flat, y_pred_flat)
-    return m.result().numpy()
+    y_pred = (
+        y_pred > threshold
+    ).astype(np.float32)
+
+    intersection = np.sum(
+        y_true * y_pred,
+        axis=(1, 2, 3),
+    )
+
+    denominator = (
+        np.sum(
+            y_true,
+            axis=(1, 2, 3),
+        )
+        +
+        np.sum(
+            y_pred,
+            axis=(1, 2, 3),
+        )
+    )
+
+    dice = (
+        2.0 * intersection + eps
+    ) / (
+        denominator + eps
+    )
+
+    return float(
+        np.mean(dice)
+    )
+
+
+def mean_iou(
+    y_true,
+    y_pred,
+    threshold=0.5,
+    eps=1e-6,
+):
+    """
+    Compute mean per-sample foreground IoU.
+
+    Ground-truth masks are binarized at 0.5 and predictions are
+    thresholded before evaluation.
+    """
+
+    y_true = (
+        y_true > 0.5
+    ).astype(np.float32)
+
+    y_pred = (
+        y_pred > threshold
+    ).astype(np.float32)
+
+    intersection = np.sum(
+        y_true * y_pred,
+        axis=(1, 2, 3),
+    )
+
+    union = (
+        np.sum(
+            y_true,
+            axis=(1, 2, 3),
+        )
+        +
+        np.sum(
+            y_pred,
+            axis=(1, 2, 3),
+        )
+        -
+        intersection
+    )
+
+    iou = (
+        intersection + eps
+    ) / (
+        union + eps
+    )
+
+    return float(
+        np.mean(iou)
+    )
